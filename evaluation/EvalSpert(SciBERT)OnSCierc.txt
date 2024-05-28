@@ -1,0 +1,148 @@
+CROSS-VALIDATION:
+
+
+Config:
+{'label': 'scierc', 'model_type': 'spert', 'model_path': 'data/models/scibert_scivocab_uncased', 'tokenizer_path': 'data/models/scibert_scivocab_uncased', 'train_path': 'data/datasets/scierc/scierc_train.json', 'valid_path': 'data/datasets/scierc/scierc_dev.json', 'types_path': 'data/datasets/scierc/scierc_types.json', 'train_batch_size': '2', 'eval_batch_size': '1', 'neg_entity_count': '100', 'neg_relation_count': '100', 'epochs': '20', 'lr': '5e-5', 'lr_warmup': '0.1', 'weight_decay': '0.01', 'max_grad_norm': '1.0', 'rel_filter_threshold': '0.4', 'size_embedding': '25', 'prop_drop': '0.1', 'max_span_size': '10', 'store_predictions': 'false', 'store_examples': 'true', 'sampling_processes': '4', 'max_pairs': '1000', 'final_eval': 'true', 'log_path': 'data/log/', 'save_path': 'data/save/', 'aec_data': 'False'}
+
+
+--- Entities (named entity recognition (NER)) ---
+An entity is considered correct if the entity type and span is predicted correctly
+
+                type    precision       recall     f1-score      support
+              Method        80.40        75.35        77.79          430
+                Task        64.87        68.82        66.79          263
+              Metric        70.27        73.24        71.72           71
+                 OST        67.43        67.82        67.62          522
+            Material        64.63        67.09        65.84          158
+             Generic        71.94        75.52        73.68          241
+
+               micro        70.61        71.16        70.88         1685
+               macro        69.92        71.31        70.57         1685
+
+--- Relations ---
+
+Without named entity classification (NEC)
+A relation is considered correct if the relation type and the spans of the two related entities are predicted correctly (entity type is not considered)
+
+                type    precision       recall     f1-score      support
+          Feature-of        16.33        13.56        14.81           59
+          Hyponym-of        61.84        70.15        65.73           67
+             Compare        76.67        60.53        67.65           38
+             Part-of        50.00        26.98        35.05           63
+        Evaluate-for        52.87        50.55        51.69           91
+         Conjunction        63.49        65.04        64.26          123
+            Used-for        54.82        51.22        52.96          533
+
+               micro        54.89        50.72        52.72          974
+               macro        53.72        48.29        50.31          974
+
+With named entity classification (NEC)
+A relation is considered correct if the relation type and the two related entities are predicted correctly (in span and entity type)
+
+                type    precision       recall     f1-score      support
+          Feature-of        10.20         8.47         9.26           59
+          Hyponym-of        32.89        37.31        34.97           67
+             Compare        70.00        55.26        61.76           38
+             Part-of        44.12        23.81        30.93           63
+        Evaluate-for        47.13        45.05        46.07           91
+         Conjunction        49.21        50.41        49.80          123
+            Used-for        40.56        37.90        39.19          533
+
+               micro        41.22        38.09        39.59          974
+               macro        42.02        36.89        38.85          974
+			   
+			   
+********************************************************************************************************************************************
+********************************************************************************************************************************************
+
+HOLD OUT TEST SET
+
+Config:
+{'label': 'scierc', 'model_type': 'spert', 'model_path': 'data/save/scierc/2024-05-25_07.14.15.031975/final_model', 'tokenizer_path': 'data/models/scibert_scivocab_uncased', 'dataset_path': 'data/datasets/scierc/scierc_test.json', 'types_path': 'data/datasets/scierc/scierc_types.json', 'eval_batch_size': '1', 'rel_filter_threshold': '0.4', 'size_embedding': '25', 'prop_drop': '0.1', 'max_span_size': '10', 'store_predictions': 'false', 'store_examples': 'true', 'sampling_processes': '4', 'max_pairs': '1000', 'log_path': 'data/log/'}
+
+
+Evaluation
+The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
+The tokenizer class you load from this checkpoint is 'RobertaTokenizer'. 
+The class this function is called from is 'BertTokenizer'.
+2024-05-25 07:36:48,519 [MainThread  ] [INFO ]  Dataset: data/datasets/scierc/scierc_test.json
+2024-05-25 07:36:48,519 [MainThread  ] [INFO ]  Model: spert
+Parse dataset 'test': 100% 551/551 [00:01<00:00, 518.73it/s]
+2024-05-25 07:36:49,587 [MainThread  ] [INFO ]  Relation type count: 8
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Entity type count: 7
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Entities:
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  No Entity=0
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Task=1
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Method=2
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Material=3
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Other Scientific Term=4
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Metric=5
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Generic=6
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Relations:
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  No Relation=0
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Used-for=1
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Feature-of=2
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Hyponym-of=3
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Evaluate-for=4
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Part-of=5
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Compare=6
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Conjunction=7
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Dataset: test
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Document count: 551
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Relation count: 974
+2024-05-25 07:36:49,588 [MainThread  ] [INFO ]  Entity count: 1685
+2024-05-25 07:36:49,922 [MainThread  ] [INFO ]  Evaluate: test
+Evaluate epoch 0: 100% 551/551 [00:23<00:00, 23.15it/s]
+
+--- Entities (named entity recognition (NER)) ---
+An entity is considered correct if the entity type and span is predicted correctly
+
+                type    precision       recall     f1-score      support
+            Material        64.67        68.35        66.46          158
+             Generic        74.04        72.20        73.11          241
+              Metric        62.32        60.56        61.43           71
+              Method        79.17        70.70        74.69          430
+                Task        62.45        63.88        63.16          263
+                 OST        64.51        63.03        63.76          522
+
+               micro        68.91        66.82        67.85         1685
+               macro        67.86        66.45        67.10         1685
+
+--- Relations ---
+
+Without named entity classification (NEC)
+A relation is considered correct if the relation type and the spans of the two related entities are predicted correctly (entity type is not considered)
+
+                type    precision       recall     f1-score      support
+            Used-for        50.42        44.84        47.47          533
+          Hyponym-of        59.38        56.72        58.02           67
+             Compare        66.67        57.89        61.97           38
+        Evaluate-for        58.44        49.45        53.57           91
+          Feature-of        21.28        16.95        18.87           59
+             Part-of        40.62        20.63        27.37           63
+         Conjunction        59.50        58.54        59.02          123
+
+               micro        51.77        45.07        48.19          974
+               macro        50.90        43.57        46.61          974
+
+With named entity classification (NEC)
+A relation is considered correct if the relation type and the two related entities are predicted correctly (in span and entity type)
+
+                type    precision       recall     f1-score      support
+            Used-for        39.45        35.08        37.14          533
+          Hyponym-of        32.81        31.34        32.06           67
+             Compare        60.61        52.63        56.34           38
+        Evaluate-for        51.95        43.96        47.62           91
+          Feature-of        14.89        11.86        13.21           59
+             Part-of        34.38        17.46        23.16           63
+         Conjunction        42.15        41.46        41.80          123
+
+               micro        39.74        34.60        36.99          974
+               macro        39.46        33.40        35.90          974
+			   
+			   
+			   
+********************************************************************************************************************************************
+********************************************************************************************************************************************
+
+

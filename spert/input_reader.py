@@ -132,11 +132,6 @@ class JsonInputReader(BaseInputReader):
         jtokens = doc['tokens']
         jrelations = doc['relations']
         jentities = doc['entities']
-        jdoc_id = doc['orig_id']
-
-        jdoc_text=None
-        if 'text' in list(doc.keys()):
-            jdoc_text= doc['text']
 
         # parse tokens
         doc_tokens, doc_encoding = _parse_tokens(jtokens, dataset, self._tokenizer)
@@ -148,30 +143,10 @@ class JsonInputReader(BaseInputReader):
         relations = self._parse_relations(jrelations, entities, dataset)
 
         # create document
-        if jdoc_text:
-            document = dataset.create_document_plus(jdoc_id, jdoc_text, doc_tokens, entities, relations, doc_encoding)
-        else:
-            document = dataset.create_document(doc_tokens, entities, relations, doc_encoding)
-
+        document = dataset.create_document(doc_tokens, entities, relations, doc_encoding)
 
         return document
 
-    def _parse_document(self, document, dataset) -> Document:
-        if type(document) == list:
-            jtokens = document
-        elif type(document) == dict:
-            jtokens = document['tokens']
-        else:
-            jtokens = [t.text for t in self._nlp(document)]
-
-        jdoc_id = document['orig_id']
-        jdoc_text = document['text']
-
-        # parse tokens
-        doc_tokens, doc_encoding = _parse_tokens(jtokens, dataset, self._tokenizer)
-
-        # create document
-        document = dataset.create_document(jdoc_id,jdoc_text,doc_tokens, [], [], doc_encoding)
 
         return document
 
@@ -237,8 +212,21 @@ class JsonPredictionInputReader(BaseInputReader):
         for document in tqdm(documents, desc="Parse dataset '%s'" % dataset.label):
             self._parse_document(document, dataset)
 
+    def _parse_document(self, document, dataset) -> Document:
+        if type(document) == list:
+            jtokens = document
+        elif type(document) == dict:
+            jtokens = document['tokens']
+        else:
+            jtokens = [t.text for t in self._nlp(document)]
 
+        # parse tokens
+        doc_tokens, doc_encoding = _parse_tokens(jtokens, dataset, self._tokenizer)
 
+        # create document
+        document = dataset.create_document(doc_tokens, [], [], doc_encoding)
+
+        return document
 
 def _parse_tokens(jtokens, dataset, tokenizer):
     doc_tokens = []

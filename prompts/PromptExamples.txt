@@ -1,0 +1,34 @@
+### Example Contexts: ### \n \
+Context:```A scheduling method of air conditioner operation using workers daily action plan towards energy saving and comfort at office.```\n \
+Entities:[(T1;Method;scheduling method],(T2;Task;energy saving),(T3;OtherScientificTerm;comfort),(T4;Task;air conditioner operation)\n \
+Relations:[(R1;Used-for;Arg1:T1;Arg2:T4),(R2;Used-for;Arg1:T4;Arg2:T2),(R3;Used-for;Arg1:T4;Arg2:T3)] \n \
+Context:```High Performance Aerogel Containing Plaster for Historic Buildings with Structured Façades.```\n \
+Entities:[(T1;OtherScientificTerm;Historic Buildings),(T2;OtherScientificTerm;High Performance Aerogel),(T3;OtherScientificTerm;Plaster),(T4;OtherScientificTerm;Structured Façades)] \n \
+Relations:[(R1;Feature-of;Arg1:T3;Arg2:T2),(R2;Part-of;Arg1:T4;Arg2:T1)] \n \
+Context:```As cities evolve into technologically advanced hubs popularly termed as Smart cities, enhancing citizen well-being, and promoting sustainable urban living becomes paramount.```\n \
+Entities:[(T1;OtherScientificTerm;cities),(T2;OtherScientificTerm;technologically advanced hubs),(T3;OtherScientificTerm;Smart cities),(T4;Task;citizen well-being),(T5;Task;sustainable urban living)]\n \
+Relations:[(R1;Hyponym-of;Arg1:T3;Arg2:T2)]\n \
+Context:```This research delves into perceptions of emerging technological tools to suffice safety & security in urban public space formulations in line with the intentions of many cities around the world and as envisioned by CPTED concepts.```\n \ 
+Entities:[(T1;Generic;research),(T2;OtherScientificTerm;emerging technological tools),(T3;OtherScientificTerm;safety & security),(T4;OtherScientificTerm;urban public space),(T5;OtherScientificTerm;cities),(T6;OtherScientificTerm;CPTED concepts)] \n \
+Relations:[] \n \
+Context:```Room occupancy detection: Combining RSS analysis and fuzzy logic.```\n \
+Entities:[(T1;Task;Room occupancy detection),(T2;Method;RSS analysis),(T3;Method;fuzzy logic)]\n \
+Relations:[(R1;Used-for;Arg1:T2;Arg2:T1),(R2;Used-for;Arg1:T3;Arg2:T1),(R3;Conjunction;Arg1:T2;Arg2:T3)]\n \
+Context:```A Microalgae Photobioreactor System for Indoor Air Remediation: Empirical Examination of the CO2 Absorption Performance of Spirulina maxima in a NaHCO3-Reduced Medium.``` \n \
+Entities:[(T1;Method;Microalgae Photobioreactor System),(T2;Task;Indoor Air Remediation),(T3;Task;CO2 Absorption Performance),(T4;OtherScientificTerm;Spirulina maxima),(T5;OtherScientificTerm;NaHCO3-Reduced Medium)]   \n \
+Relations:[(R1;Used-for;Arg1:T1;Arg2:T2),(R2;Evaluate-for;Arg1:T3;Arg2:T2)] \n \
+Context:```Microalgae-based photobioreactors (PBRs) have gained attention as a sustainable solution for indoor air quality (IAQ) control.``` \n \
+Entities:[(T1;Method;Microalgae-based photobioreactors (PBRs)),(T2;Task;indoor air quality (IAQ) control)] \n \
+Relations:[(R2;Used-for;Arg1:T1;Arg2:T2)]  \n \
+Context:```Cultivation performance of three medium amendments (standard, 50% NaHCO3, and NaHCO3-free) was compared by observing cell growth for 30 days in a controlled environment.``` \n \
+Entities:[(T1;Task;Cultivation performance),(T2;OtherScientificTerm;medium amendments),(T3;Generic;standard),(T4;OtherScientificTerm;50% NaHCO3),(T5;OtherScientificTerm;NaHCO3-free),(T6;Metric;cell growth),(T7;OtherScientificTerm;controlled environment)] \n \
+Relations:[(R1;Evaluate-for;Arg1:T6;Arg2:T1),(R2;Hyponym-of;Arg1:T3;Arg2:T2),(R3;Hyponym-of;Arg1:T4;Arg2:T2),(R4;Hyponym-of;T4;Arg2:T2),(R5;Compare;Arg1:T3;Arg2:T4),((R6;Compare;Arg1:T4;Arg2:T5))] \n \
+Context:```Comfortable temperature for workers is decided by using PMV(Predicted Mean Vote), and the temperature and power consumption are estimated by indoor environment simulator.``` \n \
+Entities:[(T1;OtherScientificTerm;Comfortable temperature),(T2;Metric;PMV(Predicted Mean Vote)),(T3;Task;temperature and power consumption),(T4;Method;indoor environment simulator)] \n \
+Relations:[(R1;Evaluate-for;Arg1:T2;Arg2:T1),(R2;Evaluate-for;Arg1:T4;Arg2:T3)] \n \
+Context:```Finally, the software applications Designbuilder and Athena are utilized to evaluate the impact of maintenance and retrofits on embodied energy compared to operational energy savings.``` \n \
+Entities:[(T1;Material;software applications),(T2;Material;Designbuilder),(T3;Material;Athena),(T4;OtherScientificTerm;impact of maintenance and retrofits),(T5;OtherScientificTerm;embodied energy),(T6;OtherScientificTerm;operational energy savings)] \n \
+Relations:[(R1;Hyponym-of;Arg1:T2;Arg2:T1),(R2;Hyponym-of;Arg1:T3;Arg2:T1),(R3;Conjunction;Arg1:T3;Arg2:T2),(R4;Evaluate-for;Arg1:T2;Arg2:T4),(R5;Evaluate-for;Arg1:T3;Arg2:T4),(R6;Compare;Arg1:T4;Arg2:T5)] \n \
+Context:```Biomimetic Architecture: An Innovative Approach to Attain Sustain-ability in Built Environment.``` \n \
+Entities:[(T1;OtherScientificTerm;Biomimetic Architecture),(T2;Generic;Approach),(T3;Task;Sustain-ability),(T4;OtherScientificTerm;Built Environment)] \n \
+Relations:[(R1;Used-for;Arg1:T1;Arg2:T3)] \n

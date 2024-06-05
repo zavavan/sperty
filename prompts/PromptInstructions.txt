@@ -1,0 +1,19 @@
+For each Context delimited by triple backticks in ###Task Contexts###, perform the following actions: \n \
+1 - detect entities in context and assign each entity an entity type from the type_list: [Task, Method, Metric, Material, OtherScientificTerm, Generic].\n \
+The definitions of entity types are the following: \n \
+Task: applications, problems to solve, systems to construct\n \
+Method: methods , models, systems to use, or tools, components of a system, frameworks \n \
+OtherScientificTerm: phrases that are a scientific terms but do not fall into any of the above classes \n \
+Metric: metrics, measures, or entities that can express quality of a system or method \n \
+Material: data, datasets, resources, corpus, Knowledge base \n \
+Generic: general terms or pronouns that may refer to a entity but are not themselves informative, often used as connection words, for example: model, approach, prior knowledge, them, it \n \
+Format the output as a list of tuples of form (T<i>;type;match) where i is the integer index of the entity, type is one from the type_list and match is the detected entity in the Context.  \n \
+2 - Detect relations between pairs of entities in Context and assign each relation a type from the relation_list: [Used-for, Part-of, Evaluate-for, Feature-of, Hyponym-of, Compare, Conjunction]  \n \
+The definitions of relation types are the following, with A and B representing entities: \n \
+Used-for: B is used for A, B models A, A is trained on B, B exploits A, A is based on B. \n \
+Feature-of: B belongs to A, B is a feature of A, B is under A domain \n \
+Hyponym-of: B is a hyponym of A, B is a type of A. \n \
+Part-of: B is a part of A \n \
+Conjunction: A and B, A as well as B \n \
+Compare: Opposite of conjunction, comparing two Model or Method entitites, or listing two opposing entities. \n \
+3- Format the output as a list of tuples of form (R<i>;type;Arg1:T<i>;Arg2:T<j>) where i is the integer index of the relation, type is one from the relation_list, T<i> and T<j> are indexes of some of the detected entities in the Context. \n

@@ -171,23 +171,27 @@ class JsonInputReader(BaseInputReader):
         relations = []
 
         for jrelation in jrelations:
-            relation_type = self._relation_types[jrelation['type']]
 
-            head_idx = jrelation['head']
-            tail_idx = jrelation['tail']
+            try:
+                relation_type = self._relation_types[jrelation['type']]
 
-            # create relation
-            head = entities[head_idx]
-            tail = entities[tail_idx]
+                head_idx = jrelation['head']
+                tail_idx = jrelation['tail']
 
-            reverse = int(tail.tokens[0].index) < int(head.tokens[0].index)
+                # create relation
+                head = entities[head_idx]
+                tail = entities[tail_idx]
 
-            # for symmetric relations: head occurs before tail in sentence
-            if relation_type.symmetric and reverse:
-                head, tail = util.swap(head, tail)
+                reverse = int(tail.tokens[0].index) < int(head.tokens[0].index)
 
-            relation = dataset.create_relation(relation_type, head_entity=head, tail_entity=tail, reverse=reverse)
-            relations.append(relation)
+                # for symmetric relations: head occurs before tail in sentence
+                if relation_type.symmetric and reverse:
+                    head, tail = util.swap(head, tail)
+
+                relation = dataset.create_relation(relation_type, head_entity=head, tail_entity=tail, reverse=reverse)
+                relations.append(relation)
+            except:
+                print('could not parse relation!')
 
         return relations
 
